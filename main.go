@@ -9,4 +9,8 @@ func main() {
 	b := 5
 	suma := a + b
 	fmt.Println("Suma = ", suma)
+
+	// Resta
+	resta := a - b
+	fmt.Println("Resta = ", resta)
 }
