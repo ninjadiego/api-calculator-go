@@ -4,18 +4,18 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
-// album represents data about a record album.
-type response struct {
-	result float64 `json:"result"`
+type RequestBody struct {
+	Num1 int `json:"num1"`
+	Num2 int `json:"num2"`
 }
 
-type RequestBody struct {
-	num1 int
-	num2 int
+type ResponseBody struct {
+	Result int `json:"result"`
 }
 
 func main() {
@@ -23,23 +23,22 @@ func main() {
 	router.GET("/calculator/plus", getPlus)
 
 	router.Run("localhost:8080")
-	a := 4
-	b := 5
-	suma := a + b
-	fmt.Println("Suma = ", suma)
-
-	// Resta
-	resta := a - b
-	fmt.Println("Resta = ", resta)
 }
 
 func getPlus(c *gin.Context) {
-	var requestBody RequestBody
+	requestBody := RequestBody{}
+	responseBody := ResponseBody{}
 
 	if err := c.BindJSON(&requestBody); err != nil {
 		fmt.Println("Error")
 	}
+	println("Request Body: ", &requestBody)
+	a := requestBody.Num1
+	b := requestBody.Num2
+	println("a: ", a)
+	println("b: ", b)
+	responseBody.Result = a + b
+	println("resultado: ", responseBody.Result)
 
-	fmt.Println(requestBody.num1, requestBody.num2)
-	// c.IndentedJSON(http.StatusOK, albums)
+	c.IndentedJSON(http.StatusOK, responseBody)
 }
