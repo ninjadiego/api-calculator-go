@@ -21,7 +21,7 @@ type ResponseBody struct {
 func main() {
 	router := gin.Default()
 	router.GET("/calculator/plus", getPlus)
-
+	router.GET("/calculator/subtract", getSubtract)
 	router.Run("localhost:8080")
 }
 
@@ -41,4 +41,22 @@ func getPlus(c *gin.Context) {
 	println("resultado: ", responseBody.Result)
 
 	c.IndentedJSON(http.StatusOK, responseBody)
+}
+
+func getSubtract(c *gin.Context) {
+	requestBody := RequestBody{}
+	responseBody := ResponseBody{}
+
+	if err := c.BindJSON(&requestBody); err != nil {
+		fmt.Println("Error")
+	}
+	println("Request Body: ", &requestBody)
+	a := requestBody.Num1
+	b := requestBody.Num2
+	println("a: ", a)
+	println("b: ", b)
+	responseBody.Result = a - b
+	println("resultado: ", responseBody.Result)
+
+	c.IndentedJSON(http.StatusAccepted, responseBody)
 }
