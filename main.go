@@ -22,8 +22,8 @@ func main() {
 	router := gin.Default()
 	router.GET("/calculator/plus", getPlus)
 	router.GET("/calculator/subtract", getSubtract)
-	router.GET("/calculator/Multiplication", getMultiplication)
-	router.GET("/calculator/Division", getDivision)
+	router.GET("/calculator/multiplication", getMultiplication)
+	router.GET("/calculator/division", getDivision)
 	router.Run("localhost:8080")
 }
 
