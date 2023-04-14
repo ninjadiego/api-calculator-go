@@ -94,7 +94,7 @@ func getDivision(c *gin.Context) {
 	b := requestBody.Num2
 	println("a: ", a)
 	println("b: ", b)
-	responseBody.Result = a / b
+	responseBody.Result = a.b
 	println("resultado: ", responseBody.Result)
 
 	c.IndentedJSON(http.StatusAccepted, responseBody)
