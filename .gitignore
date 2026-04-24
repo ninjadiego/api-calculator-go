@@ -13,3 +13,20 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# IDEs y editores
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs y archivos temporales
+*.log
+logs/
+tmp/
+
+# Archivos de entorno
+.env
+.env.local
+
